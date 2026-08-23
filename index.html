@@ -158,21 +158,32 @@
   .price small{display:block;font-family:"Manrope",sans-serif;font-size:.8rem;font-weight:600;color:var(--soft);margin-top:6px}
   .price-note{margin-top:26px;text-align:center;font-size:.92rem;color:var(--soft)}
 
-  /* ===================== GALLERY ===================== */
+  /* ===================== CATALOG ===================== */
   .gallery{background:#f7f2e9}
-  .gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .gal-item{
-    background:var(--card);border:1px solid var(--line);border-radius:var(--r);
-    padding:16px 16px 14px;
+  .f-bar{display:flex;gap:8px 22px;flex-wrap:wrap;justify-content:center;margin-bottom:36px}
+  .f-btn{
+    border:none;background:none;
+    font-family:"Manrope",sans-serif;font-weight:800;font-size:.8rem;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--soft);
+    padding:8px 2px;border-bottom:2px solid transparent;border-radius:0;
+    transition:color .25s ease,border-color .25s ease;
+  }
+  .f-btn:hover{color:var(--ink)}
+  .f-btn.active{color:var(--ink);border-color:var(--gold-2)}
+  .p-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .p-card{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:12px 12px 16px;
     transition:transform .3s ease,box-shadow .3s ease;
   }
-  .gal-item:hover{transform:translateY(-6px);box-shadow:0 20px 44px rgba(29,26,23,.1)}
-  .gal-item .ph{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff}
-  .gal-item figcaption{
-    text-align:center;font-weight:700;font-size:.92rem;color:var(--soft);
-    padding-top:12px;
-  }
-  .gal-item figcaption b{color:var(--ink)}
+  .p-card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(29,26,23,.1)}
+  .p-card.hide{display:none}
+  .p-ph{aspect-ratio:4/3;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#fff}
+  .p-ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .p-card:hover .p-ph img{transform:scale(1.05)}
+  .p-card h3{font-family:"Manrope",sans-serif;font-size:.92rem;font-weight:700;text-align:center;margin-top:12px;line-height:1.35}
+  .p-price{font-family:"Cormorant Garamond",serif;font-size:1.3rem;font-weight:700;color:var(--gold);text-align:center;margin-top:2px}
+  .p-note{margin-top:30px;text-align:center;font-size:.92rem;color:var(--soft)}
 
   /* ===================== STEPS ===================== */
   .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -225,7 +236,7 @@
   /* ===================== RESPONSIVE ===================== */
   @media (max-width:980px){
     .price-grid{grid-template-columns:repeat(2,1fr)}
-    .gal-grid{grid-template-columns:repeat(2,1fr)}
+    .p-grid{grid-template-columns:repeat(3,1fr)}
     .steps-grid{grid-template-columns:1fr;max-width:520px;margin-inline:auto}
   }
   @media (max-width:860px){
@@ -235,7 +246,7 @@
   }
   @media (max-width:600px){
     .price-grid{grid-template-columns:1fr}
-    .gal-grid{grid-template-columns:1fr}
+    .p-grid{grid-template-columns:repeat(2,1fr);gap:12px}
     .hero-btns .btn{width:100%}
     .contact-btns .btn{width:100%}
   }
@@ -286,7 +297,7 @@
     </a>
     <nav class="main" aria-label="Основне меню">
       <a href="#prices">Ціни</a>
-      <a href="#gallery">Галерея</a>
+      <a href="#catalog">Каталог</a>
       <a href="#how">Як замовити</a>
       <a href="#contact">Контакти</a>
     </nav>
@@ -301,7 +312,7 @@
 
 <nav class="m-nav" id="mnav" aria-label="Мобільне меню">
   <a href="#prices">Ціни</a>
-  <a href="#gallery">Галерея</a>
+  <a href="#catalog">Каталог</a>
   <a href="#how">Як замовити</a>
   <a href="#contact">Контакти</a>
   <a class="btn" href="https://t.me/+3807379961959" target="_blank" rel="noopener">Написати у Telegram</a>
@@ -392,109 +403,23 @@
   </div>
 </section>
 
-<!-- ================= GALLERY ================= -->
-<section class="gallery" id="gallery">
+<!-- ================= CATALOG ================= -->
+<section class="gallery" id="catalog">
   <div class="wrap">
     <div class="sec-head center reveal">
-      <span class="kicker">Галерея</span>
-      <h2 class="h2">Штучки, які вже чекають на вас</h2>
-      <p class="lead">Кожна прикраса на фото виглядає так само гарно і в житті.</p>
+      <span class="kicker">Каталог</span>
+      <h2 class="h2">Прикраси в наявності</h2>
+      <p class="lead">Обирайте, що сподобалось. Точну наявність підкажу в Telegram.</p>
     </div>
-    <div class="gal-grid">
-      <figure class="gal-item reveal">
-        <div class="ph">
-          <svg viewBox="0 0 400 300" role="img" aria-label="Сережки кільця з кристалами">
-            <ellipse cx="200" cy="266" rx="128" ry="8" fill="#1d1a17" opacity=".06"/>
-            <circle cx="143" cy="158" r="72" fill="none" stroke="url(#gSilver)" stroke-width="14"/>
-            <circle cx="257" cy="158" r="72" fill="none" stroke="url(#gSilver)" stroke-width="14"/>
-            <circle cx="143" cy="158" r="72" fill="none" stroke="#fff" stroke-width="2.4" stroke-dasharray="1.5 10.5" opacity=".95"/>
-            <circle cx="257" cy="158" r="72" fill="none" stroke="#fff" stroke-width="2.4" stroke-dasharray="1.5 10.5" opacity=".95"/>
-            <rect x="136" y="70" width="14" height="17" rx="6" fill="url(#gSilver)"/>
-            <rect x="250" y="70" width="14" height="17" rx="6" fill="url(#gSilver)"/>
-            <path d="M92 84 l2.4 7 7 2.4 -7 2.4 -2.4 7 -2.4 -7 -7 -2.4 7 -2.4z" fill="#fff" opacity=".95"/>
-            <path d="M312 96 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z" fill="#fff" opacity=".9"/>
-            <path d="M204 52 l1.8 5.4 5.4 1.8 -5.4 1.8 -1.8 5.4 -1.8 -5.4 -5.4 -1.8 5.4 -1.8z" fill="#e9d6ae" opacity=".9"/>
-          </svg>
-        </div>
-        <figcaption><b>Сережки кільця</b>, сріблясті з кристалами</figcaption>
-      </figure>
-      <figure class="gal-item reveal" style="--d:.07s">
-        <div class="ph">
-          <svg viewBox="0 0 400 300" role="img" aria-label="Кулон з чорною емаллю на ланцюжку">
-            <ellipse cx="200" cy="274" rx="76" ry="7" fill="#1d1a17" opacity=".06"/>
-            <path d="M116 0 C 152 72 180 106 200 134 M284 0 C 248 72 220 106 200 134" stroke="url(#gGold)" stroke-width="2.6" fill="none" stroke-dasharray="5 4"/>
-            <rect x="190" y="130" width="20" height="17" rx="7" fill="none" stroke="url(#gGold)" stroke-width="4.4"/>
-            <circle cx="200" cy="198" r="54" fill="url(#gRose)"/>
-            <circle cx="200" cy="198" r="44" fill="url(#gEnamel)"/>
-            <path d="M168 170 C 196 190 204 206 232 226 M232 170 C 204 190 196 206 168 226" stroke="url(#gGold)" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <path d="M168 170 C 196 190 204 206 232 226 M232 170 C 204 190 196 206 168 226" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-dasharray=".1 11" opacity=".95"/>
-            <path d="M262 84 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z" fill="#f3ddad" opacity=".9"/>
-          </svg>
-        </div>
-        <figcaption><b>Кулон</b>, рожеве золото з чорною емаллю</figcaption>
-      </figure>
-      <figure class="gal-item reveal" style="--d:.14s">
-        <div class="ph">
-          <svg viewBox="0 0 400 300" role="img" aria-label="Каблучка з емаллю">
-            <ellipse cx="200" cy="262" rx="84" ry="8" fill="#1d1a17" opacity=".06"/>
-            <circle cx="200" cy="180" r="58" fill="none" stroke="url(#gRose)" stroke-width="12"/>
-            <circle cx="200" cy="180" r="58" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="1.5 12" opacity=".8"/>
-            <circle cx="200" cy="114" r="37" fill="url(#gRose)"/>
-            <circle cx="200" cy="114" r="28" fill="url(#gEnamel)"/>
-            <path d="M180 96 C 192 104 208 124 220 132 M220 96 C 208 104 192 124 180 132" stroke="url(#gGold)" stroke-width="4.2" fill="none" stroke-linecap="round"/>
-            <path d="M180 96 C 192 104 208 124 220 132 M220 96 C 208 104 192 124 180 132" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-dasharray=".1 9" opacity=".95"/>
-            <path d="M262 66 l2.2 6.6 6.6 2.2 -6.6 2.2 -2.2 6.6 -2.2 -6.6 -6.6 -2.2 6.6 -2.2z" fill="#f3ddad" opacity=".9"/>
-          </svg>
-        </div>
-        <figcaption><b>Каблучка</b>, емаль і золотистий декор</figcaption>
-      </figure>
-      <figure class="gal-item reveal" style="--d:.07s">
-        <div class="ph">
-          <svg viewBox="0 0 400 300" role="img" aria-label="Ланцюжок з перлами">
-            <ellipse cx="200" cy="266" rx="120" ry="8" fill="#1d1a17" opacity=".06"/>
-            <path d="M64 74 C 64 230 336 230 336 74" fill="none" stroke="#cfc2b2" stroke-width="16" stroke-linecap="round" stroke-dasharray="0.1 18" opacity=".5"/>
-            <path d="M64 68 C 64 224 336 224 336 68" fill="none" stroke="url(#gPearl)" stroke-width="16" stroke-linecap="round" stroke-dasharray="0.1 18"/>
-            <ellipse cx="58" cy="62" rx="4" ry="2.4" fill="#fff" opacity=".8"/>
-            <circle cx="336" cy="68" r="7" fill="url(#gGold)"/>
-          </svg>
-        </div>
-        <figcaption><b>Ланцюжок з перлами</b>, ніжний і легкий</figcaption>
-      </figure>
-      <figure class="gal-item reveal" style="--d:.14s">
-        <div class="ph">
-          <svg viewBox="0 0 400 300" role="img" aria-label="Сережки пусети з візерунком">
-            <ellipse cx="200" cy="248" rx="120" ry="8" fill="#1d1a17" opacity=".06"/>
-            <circle cx="128" cy="150" r="44" fill="url(#gRose)"/>
-            <circle cx="128" cy="150" r="34" fill="url(#gEnamel)"/>
-            <path d="M104 128 C 116 138 140 162 152 172 M152 128 C 140 138 116 162 104 172" stroke="url(#gGold)" stroke-width="4.6" fill="none" stroke-linecap="round"/>
-            <path d="M104 128 C 116 138 140 162 152 172 M152 128 C 140 138 116 162 104 172" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray=".1 10" opacity=".95"/>
-            <circle cx="272" cy="150" r="44" fill="url(#gRose)"/>
-            <circle cx="272" cy="150" r="34" fill="url(#gEnamel)"/>
-            <path d="M248 128 C 260 138 284 162 296 172 M296 128 C 284 138 260 162 248 172" stroke="url(#gGold)" stroke-width="4.6" fill="none" stroke-linecap="round"/>
-            <path d="M248 128 C 260 138 284 162 296 172 M296 128 C 284 138 260 162 248 172" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray=".1 10" opacity=".95"/>
-            <path d="M196 74 l2.2 6.6 6.6 2.2 -6.6 2.2 -2.2 6.6 -2.2 -6.6 -6.6 -2.2 6.6 -2.2z" fill="#f3ddad" opacity=".9"/>
-          </svg>
-        </div>
-        <figcaption><b>Пусети</b>, круглі з візерунком</figcaption>
-      </figure>
-      <figure class="gal-item reveal" style="--d:.21s">
-        <div class="ph">
-          <svg viewBox="0 0 400 300" role="img" aria-label="Сережки з перлинами">
-            <ellipse cx="200" cy="256" rx="110" ry="8" fill="#1d1a17" opacity=".06"/>
-            <circle cx="136" cy="92" r="12" fill="url(#gPearl)"/>
-            <path d="M130 104 h12 l-2.4 10 h-7.2z" fill="url(#gGold)"/>
-            <circle cx="136" cy="152" r="30" fill="url(#gPearl)"/>
-            <ellipse cx="126" cy="140" rx="8" ry="5" fill="#fff" opacity=".75"/>
-            <circle cx="264" cy="92" r="12" fill="url(#gPearl)"/>
-            <path d="M258 104 h12 l-2.4 10 h-7.2z" fill="url(#gGold)"/>
-            <circle cx="264" cy="152" r="30" fill="url(#gPearl)"/>
-            <ellipse cx="254" cy="140" rx="8" ry="5" fill="#fff" opacity=".75"/>
-            <path d="M318 84 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z" fill="#f3ddad" opacity=".9"/>
-          </svg>
-        </div>
-        <figcaption><b>Сережки з перлинами</b>, на кожен день</figcaption>
-      </figure>
+    <div class="f-bar reveal" id="fbar" role="group" aria-label="Фільтр каталогу">
+      <button class="f-btn active" data-f="all" type="button">Усі</button>
+      <button class="f-btn" data-f="ser" type="button">Сережки</button>
+      <button class="f-btn" data-f="kab" type="button">Каблучки</button>
+      <button class="f-btn" data-f="kul" type="button">Кулони</button>
+      <button class="f-btn" data-f="lan" type="button">Ланцюжки</button>
     </div>
+    <div class="p-grid" id="pgrid"></div>
+    <p class="p-note reveal">Асортимент оновлюється, нові надходження показую першими в Telegram.</p>
   </div>
 </section>
 
@@ -540,7 +465,7 @@
       </a>
       <div class="foot-links">
         <a href="#prices">Ціни</a>
-        <a href="#gallery">Галерея</a>
+        <a href="#catalog">Каталог</a>
         <a href="https://t.me/+3807379961959" target="_blank" rel="noopener">Telegram</a>
         <a href="tel:+3807379961959">+380 73 996 1959</a>
       </div>
@@ -552,6 +477,61 @@
 <script>
 (function(){
   "use strict";
+
+  var PRODUCTS = [
+    ["hoops.jpg",         "Сережки кільця з кристалами",        "ser", 325],
+    ["gen_goldhoops.jpg", "Сережки кільця золотисті",           "ser", 325],
+    ["gen_bighoops.jpg",  "Сережки кільця великі сріблясті",    "ser", 285],
+    ["studs.jpg",         "Пусети з емаллю і золотим декором",  "ser", 285],
+    ["pearldrops.jpg",    "Сережки з перлинами",                "ser", 285],
+    ["gen_gemearrings.jpg","Сережки з камінцями",               "ser", 425],
+    ["stock_4.jpg",       "Сережки з синім камінням",           "ser", 425],
+    ["stock_6.jpg",       "Сережки кільця кручені золотисті",   "ser", 325],
+    ["stock_18.jpg",      "Сережки з серденьками",              "ser", 285],
+    ["ring.jpg",          "Каблучка з емаллю і декором",        "kab", 325],
+    ["gen_pearlring.jpg", "Каблучка з перлиною",                "kab", 325],
+    ["stock_10.jpg",      "Каблучка з рожевим камінням",        "kab", 325],
+    ["stock_11.jpg",      "Каблучка з каменем і декором",       "kab", 325],
+    ["stock_12.jpg",      "Каблучка квітка з камінням",         "kab", 285],
+    ["stock_13.jpg",      "Каблучки з камінням, набір",         "kab", 285],
+    ["stock_21.jpg",      "Каблучки тонкі золотисті",           "kab", 285],
+    ["pendant.jpg",       "Кулон з емаллю на ланцюжку",         "kul", 245],
+    ["stock_2.jpg",       "Кулон з камінням золотистий",        "kul", 245],
+    ["stock_8.jpg",       "Кулон з перлиною золотистий",        "kul", 245],
+    ["stock_15.jpg",      "Кулон з камінням сріблястий",        "kul", 225],
+    ["stock_16.jpg",      "Кулон багатоярусний золотистий",     "kul", 245],
+    ["stock_19.jpg",      "Кулон на ланцюжку",                  "kul", 225],
+    ["stock_20.jpg",      "Кулон серце сріблястий",             "kul", 225],
+    ["stock_22.jpg",      "Кулони з підвісками золотисті",      "kul", 245],
+    ["pearls.jpg",        "Ланцюжок з перлинами",               "lan", 325],
+    ["gen_silverchain.jpg","Ланцюжок сріблястий мінімал",       "lan", 325],
+    ["gen_goldchain.jpg", "Ланцюжок золотистий з підвіскою",    "lan", 325],
+    ["stock_1.jpg",       "Ланцюжок з перлами",                 "lan", 325],
+    ["stock_7.jpg",       "Ланцюжки тонкі мінімал",             "lan", 325],
+    ["stock_9.jpg",       "Ланцюжок масивний золотистий",       "lan", 325]
+  ];
+
+  var grid = document.getElementById("pgrid");
+  var html = "";
+  PRODUCTS.forEach(function(p){
+    html += '<article class="p-card reveal" data-cat="' + p[2] + '">'
+      + '<div class="p-ph"><img src="img/' + p[0] + '" alt="' + p[1] + '" loading="lazy" width="900" height="600"></div>'
+      + '<h3>' + p[1] + '</h3>'
+      + '<div class="p-price">' + p[3] + ' грн</div>'
+      + '</article>';
+  });
+  grid.innerHTML = html;
+
+  var fbar = document.getElementById("fbar");
+  fbar.addEventListener("click", function(e){
+    var btn = e.target.closest(".f-btn");
+    if (!btn) return;
+    fbar.querySelectorAll(".f-btn").forEach(function(b){ b.classList.toggle("active", b === btn); });
+    var f = btn.dataset.f;
+    grid.querySelectorAll(".p-card").forEach(function(c){
+      c.classList.toggle("hide", f !== "all" && c.dataset.cat !== f);
+    });
+  });
 
   var header = document.getElementById("header");
   function onScroll(){ header.classList.toggle("scrolled", window.scrollY > 12); }
